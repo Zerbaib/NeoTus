@@ -1,31 +1,27 @@
 import string
 import discord
-from discord import *
-from discord.ext import commands
-from discord.ext.commands.context import Context
-from discord.message import Message
-from unidecode import unidecode
 import json
 import platform
 import random
 import sys
 import os
+from discord import *
+from discord.ext import commands
+from discord.ext.commands.context import Context
+from discord.message import Message
+from unidecode import unidecode
 from os import getenv
 from dotenv import load_dotenv
 from random import choice
-
 from readWords import readWordsJSON
 from Enums import RedLetters, YellowLetters, BlueLetters
 from Classes.game import Game, games
 from utils import *
 
 load_dotenv()
-
 PREFIX = "!"
-
 words=[]
 dict_words_accents={}
-
 DISCORD_TOKEN = getenv("DISCORD_TOKEN")
 bot = commands.Bot(command_prefix=PREFIX)
 
