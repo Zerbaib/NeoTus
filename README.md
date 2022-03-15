@@ -36,14 +36,17 @@ Execute the command:
  ```pip3 install bs4```
  ```pip3 install platform```
  to have all module for use the project.
+
 _Step 2_:
 Execute:
  ```git clone https://github.com/Zerbaib/NeoTus.git```
  to get the bot files.
+
 _Step 3_:
 Execute:
  ```cd NeoTus```
  to go to the bot folder.
+
 _Step 4_:
 Execute:
  ```python3 main.py```
@@ -51,7 +54,7 @@ Execute:
  (you must modify the config for the token and the bot id)
 
 ## To do
-- [ ] The log (in discord.log and in the cmd) systeme (1/2)
+- [ ] Finish th bot
 
 ## Made with
 _The software :_
