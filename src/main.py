@@ -1,3 +1,5 @@
+import string
+from discord import *
 from discord.ext import commands
 from discord.ext.commands.context import Context
 from discord.message import Message
@@ -16,8 +18,10 @@ load_dotenv()
 
 PREFIX = "!"
 
-words, dict_words_accents = readWordsJSON("../public/words.json")
+words=[]
+dict_words_accents={}
 
+DISCORD_TOKEN = getenv("DISCORD_TOKEN")
 bot = commands.Bot(command_prefix=PREFIX)
 
 
@@ -25,11 +29,25 @@ bot = commands.Bot(command_prefix=PREFIX)
 async def on_ready():
     print("pret")
 
-@bot.command(aliases=['s', "startGame"])
-async def start(ctx: Context, difficulty: str = "medium"):
+@bot.command()
+@commands.has_any_role('Ancient Immortal Ancestor (Administrator)', 'Immemorial Supreme Elder (Manager)', 'Team Neovel')
+async def starten(ctx: Context, difficulty: str = "medium"):
+    await start(ctx, difficulty,'EN')
+
+@bot.command()
+@commands.has_any_role('Ancient Immortal Ancestor (Administrator)', 'Immemorial Supreme Elder (Manager)', 'Team Neovel')
+async def startfr(ctx: Context, difficulty: str = "medium"):
+    await start(ctx, difficulty,'FR')
+
+async def start(ctx: Context, difficulty: str = "medium", lang: string = 'EN'):
     if doesGameExist(games, ctx.channel.id):
         await ctx.send("Il y a deja une partie en cours !")
         return
+
+    if lang == 'EN':
+        words, dict_words_accents = readWordsJSON("../public/words.json")
+    else:
+        words, dict_words_accents = readWordsJSON("../public/mots old.json")
     
     random_word = getRandomWordByDifficulty(words, difficulty)
 
@@ -37,8 +55,7 @@ async def start(ctx: Context, difficulty: str = "medium"):
 
     game.setRandomCorrectLetters(2)
 
-    await ctx.send("Démarrage de la partie. Mo Mo Motus !")
-    await ctx.send(f"Entrez un mot de {len(random_word)} lettres")
+    await ctx.send(f"Démarrage de la partie.\nLe mot a trouver fait {len(random_word)} lettres !\n")
     await ctx.send(game.correctLettersToString())
 
 @bot.command()
@@ -140,4 +157,4 @@ async def on_message(message: Message):
         await message.channel.send(f"Partie terminée ! Le mot était: {game.word}")
         game.delete()
 
-bot.run("ODkyMDg4ODcxODM0MjUxMzQ1.YVH0gQ.TAnvLReTo8guqxO1JzVKgY3WjTI")
+bot.run(DISCORD_TOKEN)

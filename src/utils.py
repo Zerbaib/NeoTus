@@ -24,8 +24,6 @@ def getRandomWordByDifficulty(words, difficulty: str):
     return random_word
     
 def getRandomPhrase(user):
-    if user.id == 346417942575185922:
-        return "Wow bravo Mélanie tu es vraiment très forte, ça me fait très plaisir que tu joues à mon jeu."
 
     phrases = [
         f"Bravo {user.name}, tu as trouvé le mot.",
