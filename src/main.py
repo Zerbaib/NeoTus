@@ -1,10 +1,15 @@
 import string
+import discord
 from discord import *
 from discord.ext import commands
 from discord.ext.commands.context import Context
 from discord.message import Message
 from unidecode import unidecode
-
+import json
+import platform
+import random
+import sys
+import os
 from os import getenv
 from dotenv import load_dotenv
 from random import choice
@@ -27,7 +32,11 @@ bot = commands.Bot(command_prefix=PREFIX)
 
 @bot.event
 async def on_ready():
-    print("pret")
+    print(f"connecté en tant que {bot.user.name}")
+    print(f"Discord.py API version: {discord.__version__}")
+    print(f"Python version: {platform.python_version()}")
+    print(f"Run sur: {platform.system()} {platform.release()} ({os.name})")
+    print("-------------------")
 
 @bot.command()
 @commands.has_any_role('Ancient Immortal Ancestor (Administrator)', 'Immemorial Supreme Elder (Manager)', 'Team Neovel')
@@ -95,7 +104,6 @@ async def on_message(message: Message):
 
     # if not msg in words:
     #    return await message.channel.send("Le mot que vous avez écrit n'est pas français.")
-
 
     game = games.get(message.channel.id)
 
