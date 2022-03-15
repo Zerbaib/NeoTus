@@ -90,6 +90,7 @@ async def on_message(message: Message):
 
     # Pass if the length of the word is not the same as the random_word
     if len(msg) != len(random_word):
+        await message.channel.send("Pas le bon nombre de lettre")
         return
 
     # if not msg in words:
