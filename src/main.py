@@ -29,7 +29,7 @@ bot = commands.Bot(command_prefix=PREFIX)
 
 @bot.event
 async def on_ready():
-    print(f"connecté en tannt que {bot.user.name}")
+    print(f"connecté en tant que {bot.user.name}")
     print(f"Discord.py API version: {discord.__version__}")
     print(f"Python version: {platform.python_version()}")
     print(f"Run sur: {platform.system()} {platform.release()} ({os.name})")
