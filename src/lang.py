@@ -10,7 +10,7 @@ def langFR():
     i18n.add_translation('finDeGame','La partie est terminée !')
 
 def langEN():
-    i18n.add_translation('startGame','__**Rules:**__\n>>> The goal is to find the word in as few moves as possible.\nTo play, all you have to do is post a word with the right number of letters and find the right one (like a hangman in a way).\n\n***WARNING:***\nThe letters in red <:a_red:953254371460788224> are well placed letters.\nThe letters in yellow <:a_yellow:953254371439812608> are badly placed .\nAnd the blue letters :regional_indicator_a: are wrong.')
+    i18n.add_translation('startGame','__**Rules:**__\n>>> The goal is to find the word in as few tries as possible.\nTo play you just have to post a word with the right number of letters and find the right word (like a kind of hangman).\n\n***WARNING:***\nA letter in red <:a_red:953254371460788224> is well placed.\nA yellow letter <:a_yellow:953254371439812608> exists in the word but is misplaced.\nA blue letter :regional_indicator_a: does not exist in the word')
     i18n.add_translation('startError','There is already a game in progress !')
     i18n.add_translation('nombreLettreError',':x: Wrong number of letters !')
     i18n.add_translation('finDeGame','The game is finish !')
