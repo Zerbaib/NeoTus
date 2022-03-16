@@ -18,6 +18,7 @@ from readWords import readWordsJSON
 from Enums import RedLetters, YellowLetters, BlueLetters
 from Classes.game import Game, games
 from utils import *
+from lang import *
 
 load_dotenv()
 PREFIX = "!"
@@ -38,18 +39,18 @@ async def on_ready():
 @bot.command()
 @commands.has_any_role('Ancient Immortal Ancestor (Administrator)', 'Immemorial Supreme Elder (Manager)', 'Team Neovel')
 async def starten(ctx: Context, difficulty: str = "medium"):
-    i18n.add_translation('startMsg','There is already a game in progress !')
+    langEN()
     await start(ctx, difficulty,'EN')
 
 @bot.command()
 @commands.has_any_role('Ancient Immortal Ancestor (Administrator)', 'Immemorial Supreme Elder (Manager)', 'Team Neovel')
 async def startfr(ctx: Context, difficulty: str = "medium"):
-    i18n.add_translation('startMsg','Il y a deja une partie en cours !')
+    langFR()
     await start(ctx, difficulty,'FR')
 
 async def start(ctx: Context, difficulty: str = "medium", lang: string = 'EN'):
     if doesGameExist(games, ctx.channel.id):
-        await ctx.send(i18n.t('startMsg'))
+        await ctx.send(i18n.t('startError'))
         return
 
     if lang == 'EN':
@@ -63,20 +64,9 @@ async def start(ctx: Context, difficulty: str = "medium", lang: string = 'EN'):
 
     game.setRandomCorrectLetters(2)
 
-    await ctx.send(f"Démarrage de la partie.\nLe mot a trouver fait {len(random_word)} lettres !\n")
+    await ctx.send(i18n.t('startGame'))
+    # await ctx.send(f"Démarrage de la partie.\nLe mot a trouver fait {len(random_word)} lettres !\n")
     await ctx.send(game.correctLettersToString())
-
-@bot.command()
-async def stop(ctx: Context):
-    if not doesGameExist(games, ctx.channel.id):
-        await ctx.send("Il n'y a pas de partie en cours")
-        return
-        
-    game = games.get(ctx.channel.id)
-
-    game.stop
-
-    await ctx.send("Partie terminée !")
 
 @bot.event
 async def on_message(message: Message):
@@ -89,6 +79,9 @@ async def on_message(message: Message):
     # Pass message not starting with prefix
     if msg.startswith(PREFIX):
         return await bot.process_commands(message)
+    
+    # if msg.__contains__('<:'):
+        return
 
     # Pass message if no active games in channel
     if not games.get(message.channel.id):
@@ -98,7 +91,7 @@ async def on_message(message: Message):
 
     # Pass if the length of the word is not the same as the random_word
     if len(msg) != len(random_word):
-        await message.channel.send("Pas le bon nombre de lettre")
+        await message.channel.send(i18n.t('nombreLettreError'))
         return
 
     # if not msg in words:
@@ -160,8 +153,9 @@ async def on_message(message: Message):
         await message.channel.send(getRandomPhrase(message.author))
         return
 
-    if game.current >= game.limit:
-        await message.channel.send(f"Partie terminée ! Le mot était: {game.word}")
-        game.delete()
+    # if game.current >= game.limit:
+    #    await message.channel.send(i18n.t('finDeGame'))
+    #    await message.channel.send(f"Partie terminée ! Le mot était: {game.word}")
+    #    game.delete()
 
 bot.run(DISCORD_TOKEN)
