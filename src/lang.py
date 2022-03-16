@@ -4,9 +4,9 @@ from random import choice
 from bs4 import BeautifulSoup
 
 def langFR():
-    i18n.add_translation('startGame',"__**Les régles:**__\n>>> Le but est de trouver le mot en un minimum de coups.\nPour jouer il vous suffit de poster un mot avec le bon nombre de lettre et de trouver le bon (comme un pendue en quelque sorte).\n\n***ATTENTION:***\nLes lettre en rouge <:a_red:953254371460788224> sont des lettre bien placer.\nLes lettre en jaune <:a_yellow:953254371439812608> sont mal placer.\nEt les lettre bleu :regional_indicator_a: sont fausse.")
-    i18n.add_translation('startError','Il y a deja une partie en cours !')
-    i18n.add_translation('nombreLettreError',':x: Pas le bon nombre de lettre !')
+    i18n.add_translation('startGame',"__**Les régles:**__\n>>> Le but est de trouver le mot en un minimum d’essais.\nPour jouer il vous suffit de poster un mot avec le bon nombre de lettres et de trouver le bon mot (comme une sorte de pendu).\n\n***ATTENTION:***\nUne lettre en rouge <:a_red:953254371460788224> est bien placée.\nUne lettre en jaune <:a_yellow:953254371439812608> existe dans le mot mais est mal placée.\nUne lettre en bleu :regional_indicator_a: n'existe pas dans le mot.")
+    i18n.add_translation('startError','Il y a déjà une partie en cours !')
+    i18n.add_translation('nombreLettreError',':x: Pas le bon nombre de lettres !')
     i18n.add_translation('finDeGame','La partie est terminée !')
 
 def langEN():
