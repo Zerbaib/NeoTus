@@ -137,13 +137,13 @@ async def on_message(message: Message):
             # Replace - with incorrectly placed letter
             result[i] = YellowLetters[letter]
             
-    # historique = game.history
-    # historique.append(result)
+    historique = game.history
+    historique.append(result)
 
     game.current += 1
 
-    # if len(historique) > 2:
-    #     historique.pop(0)
+    if len(historique) > 2:
+        historique.pop(0)
 
     await message.channel.send(game.historyToString())
 
