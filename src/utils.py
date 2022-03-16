@@ -1,5 +1,4 @@
 import requests
-
 from random import choice
 from bs4 import BeautifulSoup
 
