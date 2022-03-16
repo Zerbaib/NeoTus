@@ -155,7 +155,6 @@ async def on_message(message: Message):
     if msg == game.word:
         game.delete()
         await message.channel.send(getRandomPhrase(message.author))
-        await message.channel.send(findDefinitions(dict_words_accents.get(game.word)))
         return
 
     if game.current >= game.limit:
