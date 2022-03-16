@@ -5,6 +5,7 @@ import platform
 import random
 import sys
 import os
+import i18n
 from discord import *
 from discord.ext import commands
 from discord.ext.commands.context import Context
@@ -25,7 +26,6 @@ dict_words_accents={}
 DISCORD_TOKEN = getenv("DISCORD_TOKEN")
 bot = commands.Bot(command_prefix=PREFIX)
 
-
 @bot.event
 async def on_ready():
     print(f"connecté en tant que {bot.user.name}")
@@ -34,19 +34,22 @@ async def on_ready():
     print(f"Run sur: {platform.system()} {platform.release()} ({os.name})")
     print("-------------------")
 
+
 @bot.command()
 @commands.has_any_role('Ancient Immortal Ancestor (Administrator)', 'Immemorial Supreme Elder (Manager)', 'Team Neovel')
 async def starten(ctx: Context, difficulty: str = "medium"):
+    i18n.add_translation('startMsg','There is already a game in progress !')
     await start(ctx, difficulty,'EN')
 
 @bot.command()
 @commands.has_any_role('Ancient Immortal Ancestor (Administrator)', 'Immemorial Supreme Elder (Manager)', 'Team Neovel')
 async def startfr(ctx: Context, difficulty: str = "medium"):
+    i18n.add_translation('startMsg','Il y a deja une partie en cours !')
     await start(ctx, difficulty,'FR')
 
 async def start(ctx: Context, difficulty: str = "medium", lang: string = 'EN'):
     if doesGameExist(games, ctx.channel.id):
-        await ctx.send("Il y a deja une partie en cours !")
+        await ctx.send(i18n.t('startMsg'))
         return
 
     if lang == 'EN':
