@@ -36,6 +36,7 @@ def displayScorboard():
 
 @bot.event
 async def on_ready():
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="https://neovel.io/"))
     print(f"connecté en tant que {bot.user.name}")
     print(f"Discord.py API version: {discord.__version__}")
     print(f"Python version: {platform.python_version()}")
@@ -48,6 +49,12 @@ async def reset(message: Message):
     scoreboard.clear()
     displayScorboard()
     await message.channel.send("Le scoreboard a bien été reset")
+
+# @bot.command()
+# @commands.has_any_role('Ancient Immortal Ancestor (Administrator)', 'Immemorial Supreme Elder (Manager)', 'Team Neovel')
+# async def top(message: Message):
+#     counter = collections.Counter(scoreboard)
+#     await message.channel.send(counter)
 
 @bot.command()
 @commands.has_any_role('Ancient Immortal Ancestor (Administrator)', 'Immemorial Supreme Elder (Manager)', 'Team Neovel')
