@@ -64,7 +64,6 @@ async def start(ctx: Context, difficulty: str = "medium", lang: string = 'EN'):
     game.setRandomCorrectLetters(2)
 
     await ctx.send(i18n.t('startGame'))
-    # await ctx.send(f"Démarrage de la partie.\nLe mot a trouver fait {len(random_word)} lettres !\n")
     await ctx.send(game.correctLettersToString())
 
 @bot.event
