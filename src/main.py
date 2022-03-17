@@ -53,7 +53,7 @@ async def start(ctx: Context, difficulty: str = "medium", lang: string = 'EN'):
         return
 
     if lang == 'EN':
-        words, dict_words_accents = readWordsJSON("../public/motsEN.json")
+        words, dict_words_accents = readWordsJSON("../public/words.json")
     else:
         words, dict_words_accents = readWordsJSON("../public/mots old.json")
     
@@ -136,14 +136,8 @@ async def on_message(message: Message):
 
             # Replace - with incorrectly placed letter
             result[i] = YellowLetters[letter]
-            
-    historique = game.history
-    historique.append(result)
 
     game.current += 1
-
-    if len(historique) > 2:
-        historique.pop(0)
 
     await message.channel.send(game.historyToString())
 
