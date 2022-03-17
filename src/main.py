@@ -146,9 +146,4 @@ async def on_message(message: Message):
         await message.channel.send(getRandomPhrase(message.author))
         return
 
-    # if game.current >= game.limit:
-    #    await message.channel.send(i18n.t('finDeGame'))
-    #    await message.channel.send(f"Partie terminée ! Le mot était: {game.word}")
-    #    game.delete()
-
 bot.run(DISCORD_TOKEN)
