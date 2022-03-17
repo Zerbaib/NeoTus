@@ -53,9 +53,9 @@ async def start(ctx: Context, difficulty: str = "medium", lang: string = 'EN'):
         return
 
     if lang == 'EN':
-        words, dict_words_accents = readWordsJSON("../public/words.json")
+        words, dict_words_accents = readWordsJSON("../public/motsEN.json")
     else:
-        words, dict_words_accents = readWordsJSON("../public/mots old.json")
+        words, dict_words_accents = readWordsJSON("../public/motsFR.json")
     
     random_word = getRandomWordByDifficulty(words, difficulty)
 
