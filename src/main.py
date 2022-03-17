@@ -1,4 +1,5 @@
 import string
+from typing import Counter
 import discord
 import json
 import platform
@@ -6,6 +7,7 @@ import random
 import sys
 import os
 import i18n
+import collections
 from discord import *
 from discord.ext import commands
 from discord.ext.commands.context import Context
@@ -26,6 +28,11 @@ words=[]
 dict_words_accents={}
 DISCORD_TOKEN = getenv("DISCORD_TOKEN")
 bot = commands.Bot(command_prefix=PREFIX)
+scoreboard = []
+
+def displayScorboard():
+    counter = collections.Counter(scoreboard)
+    print(counter)
 
 @bot.event
 async def on_ready():
@@ -34,6 +41,18 @@ async def on_ready():
     print(f"Python version: {platform.python_version()}")
     print(f"Run sur: {platform.system()} {platform.release()} ({os.name})")
     print("-------------------")
+    scoreboard.extend(["Thibo", "Eudrey", "Hugo", "Thibo"])
+    displayScorboard()
+
+# @bot.command()
+# @commands.has_any_role('Ancient Immortal Ancestor (Administrator)', 'Immemorial Supreme Elder (Manager)', 'Team Neovel')
+# async def reset(message: Message):
+#     scoreboard = []
+#     counter = []
+#     displayScorboard()
+#     print(scoreboard)
+#     print(counter)
+#     await message.channel.send("Le scoreboard a bien été reset")
 
 @bot.command()
 @commands.has_any_role('Ancient Immortal Ancestor (Administrator)', 'Immemorial Supreme Elder (Manager)', 'Team Neovel')
@@ -149,6 +168,8 @@ async def on_message(message: Message):
     if msg == game.word:
         game.delete()
         await message.channel.send(getRandomPhrase(message.author))
+        scoreboard.append(message.author.display_name)
+        displayScorboard()
         return
 
 bot.run(DISCORD_TOKEN)
