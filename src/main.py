@@ -1,3 +1,4 @@
+from multiprocessing.sharedctypes import Value
 import string
 from typing import Counter
 import discord
@@ -42,6 +43,12 @@ async def on_ready():
     print(f"Python version: {platform.python_version()}")
     print(f"Run sur: {platform.system()} {platform.release()} ({os.name})")
     print("-------------------")
+    scoreboard.extend(["Thibo", "Eudrey", "Hugo", "Hugo"])
+    counter = collections.Counter(scoreboard)
+    print(counter)
+    for i in counter.items():
+        print("i a pour valeur", i)
+
 
 @bot.command()
 @commands.has_any_role('Ancient Immortal Ancestor (Administrator)', 'Immemorial Supreme Elder (Manager)', 'Team Neovel')
@@ -54,7 +61,7 @@ async def reset(message: Message):
 @commands.has_any_role('Ancient Immortal Ancestor (Administrator)', 'Immemorial Supreme Elder (Manager)', 'Team Neovel')
 async def top(message: Message):
     counter = collections.Counter(scoreboard)
-    await message.channel.send(counter)
+    await message.channel.send(counter.items())
 
 @bot.command()
 @commands.has_any_role('Ancient Immortal Ancestor (Administrator)', 'Immemorial Supreme Elder (Manager)', 'Team Neovel')
