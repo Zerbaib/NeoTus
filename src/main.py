@@ -50,11 +50,11 @@ async def reset(message: Message):
     displayScorboard()
     await message.channel.send("Le scoreboard a bien été reset")
 
-# @bot.command()
-# @commands.has_any_role('Ancient Immortal Ancestor (Administrator)', 'Immemorial Supreme Elder (Manager)', 'Team Neovel')
-# async def top(message: Message):
-#     counter = collections.Counter(scoreboard)
-#     await message.channel.send(counter)
+@bot.command()
+@commands.has_any_role('Ancient Immortal Ancestor (Administrator)', 'Immemorial Supreme Elder (Manager)', 'Team Neovel')
+async def top(message: Message):
+    counter = collections.Counter(scoreboard)
+    await message.channel.send(counter)
 
 @bot.command()
 @commands.has_any_role('Ancient Immortal Ancestor (Administrator)', 'Immemorial Supreme Elder (Manager)', 'Team Neovel')
