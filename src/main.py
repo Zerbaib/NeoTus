@@ -43,11 +43,13 @@ async def on_ready():
     print(f"Python version: {platform.python_version()}")
     print(f"Run sur: {platform.system()} {platform.release()} ({os.name})")
     print("-------------------")
-    scoreboard.extend(["Thibo", "Eudrey", "Hugo", "Hugo"])
+    scoreboard.extend(["Hugo", "Thibo", "Eudrey", "Hugo", "Hugo"])
     counter = collections.Counter(scoreboard)
+    # print(counter)
+    # next(iter(counter))
     print(counter)
     for i in counter.items():
-        print("i a pour valeur", i)
+        print("i a pour valeur", list(i)[0],list(i)[1])
 
 
 @bot.command()
