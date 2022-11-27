@@ -1,3 +1,4 @@
 .env
 /env
+src/config.py
 __pycache__

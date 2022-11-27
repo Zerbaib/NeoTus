@@ -22,12 +22,13 @@ from Enums import RedLetters, YellowLetters, BlueLetters
 from Classes.game import Game, games
 from utils import *
 from lang import *
+import config
 
 load_dotenv()
 PREFIX = "!"
 words=[]
 dict_words_accents={}
-DISCORD_TOKEN = getenv("DISCORD_TOKEN")
+DISCORD_TOKEN = config.DISCORD_TOKEN
 bot = commands.Bot(command_prefix=PREFIX)
 scoreboard = []
 
@@ -53,26 +54,26 @@ async def on_ready():
 
 
 @bot.command()
-@commands.has_any_role('Ancient Immortal Ancestor (Administrator)', 'Immemorial Supreme Elder (Manager)', 'Team Neovel')
+@commands.has_any_role('Ancient Immortal Ancestor (Administrator)', 'Immemorial Supreme Elder (Manager)', 'Team Neovel', 'Entering Dao')
 async def reset(message: Message):
     scoreboard.clear()
     displayScorboard()
     await message.channel.send("Le scoreboard a bien été reset")
 
 @bot.command()
-@commands.has_any_role('Ancient Immortal Ancestor (Administrator)', 'Immemorial Supreme Elder (Manager)', 'Team Neovel')
+@commands.has_any_role('Ancient Immortal Ancestor (Administrator)', 'Immemorial Supreme Elder (Manager)', 'Team Neovel', 'Entering Dao')
 async def top(message: Message):
     counter = collections.Counter(scoreboard)
     await message.channel.send(counter.items())
 
 @bot.command()
-@commands.has_any_role('Ancient Immortal Ancestor (Administrator)', 'Immemorial Supreme Elder (Manager)', 'Team Neovel')
+@commands.has_any_role('Ancient Immortal Ancestor (Administrator)', 'Immemorial Supreme Elder (Manager)', 'Team Neovel', 'Entering Dao')
 async def starten(ctx: Context, difficulty: str = "medium"):
     langEN()
     await start(ctx, difficulty,'EN')
 
 @bot.command()
-@commands.has_any_role('Ancient Immortal Ancestor (Administrator)', 'Immemorial Supreme Elder (Manager)', 'Team Neovel')
+@commands.has_any_role('Ancient Immortal Ancestor (Administrator)', 'Immemorial Supreme Elder (Manager)', 'Team Neovel', 'Entering Dao')
 async def startfr(ctx: Context, difficulty: str = "medium"):
     langFR()
     await start(ctx, difficulty,'FR')
